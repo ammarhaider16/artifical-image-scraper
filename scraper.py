@@ -3,7 +3,6 @@ import tempfile
 import urllib.request
 import os
 
-
 def getImages(numberImages: int, destination: str):
     url = "https://thispersondoesnotexist.com/"
     headers = {
@@ -14,16 +13,13 @@ def getImages(numberImages: int, destination: str):
         req = urllib.request.Request(url, headers=headers)
         
         with urllib.request.urlopen(req) as response:
-            with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            with tempfile.NamedTemporaryFile(delete_on_close=False) as tmp_file:
                 shutil.copyfileobj(response, tmp_file)
                 temp_file_path = tmp_file.name
-
-        with open(temp_file_path, "rb") as download:
-            with open(f"{destination}/{num+1}.jpeg", "wb") as store:
-                shutil.copyfileobj(download, store)
-
-        os.remove(temp_file_path)
-
+                with open(temp_file_path, "rb") as download:
+                    with open(f"{destination}/{num+1}.jpeg", "wb") as store:
+                        shutil.copyfileobj(download, store)
+    
 
 filepath = "C:/Users/mamma/OneDrive/Desktop/Generated Images"
-getImages(5, filepath)
+getImages(12, filepath)
