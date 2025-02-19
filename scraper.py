@@ -1,7 +1,6 @@
 import shutil
 import tempfile
 import urllib.request
-import os
 
 def getImages(numberImages: int, destination: str):
     url = "https://thispersondoesnotexist.com/"
@@ -22,4 +21,4 @@ def getImages(numberImages: int, destination: str):
     
 
 filepath = "C:/Users/mamma/OneDrive/Desktop/Generated Images"
-getImages(12, filepath)
+getImages(10, filepath)
